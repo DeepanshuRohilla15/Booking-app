@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"strings"
+)
 
 func main() {
 	var conferenceName = "Go Conference"
@@ -17,29 +20,51 @@ func main() {
 	var email string
 	var userTickets int
 
-	fmt.Println("Enter your first name: ")
-	fmt.Scan(&firstName)
+      for{
+		fmt.Println("Enter your first name: ")
+		fmt.Scan(&firstName)
+	
+		fmt.Println("Enter your last name: ")
+		fmt.Scan(&lastName)
+	
+		fmt.Println("Enter your email address: ")
+		fmt.Scan(&email)
+	
+		fmt.Println("Enter number of tickets: ")
+		fmt.Scan(&userTickets)
 
-	fmt.Println("Enter your last name: ")
-	fmt.Scan(&lastName)
+		if(userTickets <= remainingTickets) 
+		{
+			remainingTickets = remainingTickets - userTickets
+		bookings = append(bookings,firstName + " " + lastName)
+	
+	
+		fmt.Printf("Thankyou %v %v for booking %v tickets. You will receive a confirmation email at %v\n",firstName,lastName,userTickets,email)
+		fmt.Printf("%v tickets remaining for %v\n",remainingTickets,conferenceName)
 
-	fmt.Println("Enter your email address: ")
-	fmt.Scan(&email)
+		firstNames := []string{}
+		for _, booking := range bookings {
+			var names = strings.Fields(booking)
+			firstNames = append(firstNames, names[0])
+		}
+	
+		fmt.Printf("These are all our bookings: %v\n",firstNames)
 
-	fmt.Println("Enter number of tickets: ")
-	fmt.Scan(&userTickets)
-
-	remainingTickets = remainingTickets - userTickets
-	bookings = append(bookings,firstName + " " + lastName)
-
-
-	fmt.Printf("Thankyou %v %v for booking %v tickets. You will receive a confirmation email at %v\n",firstName,lastName,userTickets,email)
-	fmt.Printf("%v tickets remaining for %v\n",remainingTickets,conferenceName)
-
-	fmt.Printf("These are all our bookings: %v\n",bookings)
+		if remainingTickets ==0 {
+                  // end program
+			fmt.Println("Our conference is booked out. Come back next year.")
+			break
+		}
+		}
+	
+		else {
+			fmt.Printf("We only have %v tickets remaining,so you can't book %v tickets\n",remainingTickets,userTickets)
+		
+		}
+	}
 	
 
 
 	
 }
-
+ 
